@@ -54,7 +54,8 @@ var MainView = React.createClass({
       console.log("call connect")
       var ws = new WebSocket('ws://localhost:8090/sub?room_id=1&token=abc');
       var auth = false;
-      var _messageRecieve = this._messageRecieve;
+    //   var _messageRecieve = this._messageRecieve;
+      var onMessage = this.onMessage;
 
       ws.onopen = function() {
           getAuth();
@@ -83,7 +84,8 @@ var MainView = React.createClass({
                 time: new Date(),
                 text: msg.text
             };
-            _messageRecieve(message);
+            // _messageRecieve(message);
+            onMessage(message);
           }
       }
 
