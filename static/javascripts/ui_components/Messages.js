@@ -6,7 +6,6 @@ var Messages = React.createClass({
   render: function() {
 
     var messageList = this.props.messages.map(function(message){
-        console.log("============", message);
       var text = message.text;
 
       var emojiMatches = text.match(UNICODE_REGEX);
@@ -28,8 +27,7 @@ var Messages = React.createClass({
       return  (
         <div className="message">
           <div className="avatar">
-            <img src={"https://twitter.com/"+message.name+"/profile_image?size=original"} />
-            // <img src={"http://s.same.com/image/be73191c371b996e7f891574412dc362__c0_-80_640_640__w640_h480.jpg"} />
+            <img src={"/static/images/default-avatar.png"} />
           </div>
           <div className="text-display">
             <div className="message-data">

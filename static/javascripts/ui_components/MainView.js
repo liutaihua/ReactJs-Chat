@@ -52,7 +52,7 @@ var MainView = React.createClass({
       var delay = 10;
       var max = 10;
       console.log("call connect")
-      var ws = new WebSocket('ws://localhost:8090/sub?room_id=1&token=abc');
+      var ws = new WebSocket('ws://localhost:8090/sub?room_id=1&token=abc&batch=1');
       var auth = false;
     //   var _messageRecieve = this._messageRecieve;
       var onMessage = this.onMessage;
@@ -72,20 +72,27 @@ var MainView = React.createClass({
               setTimeout(getAuth, delay);
           }
           if (auth) {
-              //var notify = self.options.notify;
             var msg;
-            if (data[0] != {}) {
-                msg = data[0];
-            } else {
-                msg = {name: "系统", text: "消息获取失败时的默认体"};
-            }
-            var message = {
-                name: msg.name,
-                time: new Date(),
-                text: msg.text
-            };
-            // _messageRecieve(message);
-            onMessage(message);
+            //var empty = true;
+            //for (var p in data[0]) {
+            //    empty = false;
+            //}
+            //if (!empty){
+            //    msg = data[0];
+            //} else {
+            //    msg = {name: "系统", text: "消息获取失败时的默认体"};
+            //}
+
+            data.forEach(function(m) {
+                var msg = m;
+                var message = {
+                    name: msg.name,
+                    time: msg.time,
+                    text: msg.text
+                };
+                // _messageRecieve(message);
+                onMessage(message);
+            });
           }
       }
 
