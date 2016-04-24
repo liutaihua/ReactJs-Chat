@@ -109,22 +109,22 @@ var MainView = React.createClass({
               'body': {}
           }));
       }
-      var user_count=0;
-      $.ajax({
-          url: "http://localhost:7172/1/count",
-          dataType: 'json',
-          type: 'GET',
-          //data: JSON.stringify({"user": "tester", "text": message}),
-          success: function(data) {
-              console.log("put likes count success", data)
-              user_count = new Number(data.ret);
-              console.log("put likes count success", data, user_count)
-          }.bind(this),
-          error: function (xhr, status, err) {
-              console.error("error ajax", err.toString());
-          }.bind(this)
-      });
-      var randomnumber = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
+      //var user_count=0;
+      //$.ajax({
+      //    url: "http://localhost:7172/1/count",
+      //    dataType: 'json',
+      //    type: 'GET',
+      //    //data: JSON.stringify({"user": "tester", "text": message}),
+      //    success: function(data) {
+      //        console.log("put likes count success", data)
+      //        user_count = new Number(data.ret);
+      //        console.log("put likes count success", data, user_count)
+      //    }.bind(this),
+      //    error: function (xhr, status, err) {
+      //        console.error("error ajax", err.toString());
+      //    }.bind(this)
+      //});
+      //var randomnumber = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
 
       function getAuth() {
           //ws.send(JSON.stringify({
