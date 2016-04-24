@@ -1,5 +1,6 @@
 var UNICODE_REGEX = /[^\u0000-\u007F]+/;
 var URL_REGEX = /https?:\/\/?[\da-z\.-]+\.[a-z\.]{2,6}[\/\w \.-]*\/?/;
+var IMG_REGEX = /[\da-z\.-]+\.[a-z\.]{2,6}[\/\w \.-]*\.[png,jpg,gif,jpeg,bmp,tiff,svg]/;
 
 var Messages = React.createClass({
 
@@ -19,7 +20,16 @@ var Messages = React.createClass({
       var urlMatches = text.match(URL_REGEX);
       if (urlMatches) {
         $.each(urlMatches, function(index, match){
-          text = text.replace(URL_REGEX, "<a class='heavy' target='_blank' href='"+match+"'>"+match+"</a>");
+            var imgMatches = match.match(IMG_REGEX);
+            if (imgMatches == null) {
+                imgMatches = [];
+            }
+            if (imgMatches.length > 0) {
+                text = text.replace(URL_REGEX, "<a class='heavy' target='_blank' href='"+match+"'>"+ "<img weight=64 height=64 src='"+match+"'/>" +"</a>");
+            } else {
+                text = text.replace(URL_REGEX, "<a class='heavy' target='_blank' href='"+match+"'>"+match+"</a>");
+            }
+
         });
       }
 
@@ -33,7 +43,6 @@ var Messages = React.createClass({
             <div className="message-data">
               <span className="author">{message.name}</span>
               <span className="timestamp">{strftime('%H:%M:%S %P', new Date(message.time))}</span>
-              <span className="seen"></span>
             </div>
             <p className="message-body" dangerouslySetInnerHTML={{__html: text}}>
             </p>
