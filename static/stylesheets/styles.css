@@ -31,6 +31,10 @@ span.emoji {
   width: 245px;
 }
 
+#msg-input-ipad {
+  width: 84%;
+}
+
 .chat-app {
   position: relative;
   height: 100%;

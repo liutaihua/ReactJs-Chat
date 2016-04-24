@@ -2,7 +2,7 @@ var MainView = React.createClass({
 
   getInitialState: function() {
 
-    var messages = ['Hi there! 😘', 'Welcome to your chat app', 'See the tutorial at http://blog.pusher.com/react-chat'];
+    var messages = ['Hi there! 😘', 'Welcome to your chat app'];
     messages = messages.map(function(msg){
       return {
         name: '系统',
@@ -38,7 +38,8 @@ var MainView = React.createClass({
     // }, this);
 
     $(document).ready(function(){
-      $('#msg-input').emojiPicker({
+      //$('#msg-input').emojiPicker({
+      $('#msg-input-ipad').emojiPicker({
         height: '150px',
         width: '200px',
         button: false
@@ -157,7 +158,7 @@ var MainView = React.createClass({
       text: text,
       time: new Date()
     }
-    var v = document.getElementById('msg-input').value;
+    var v = document.getElementById('msg-input-ipad').value;
     var j = {user: "test", text: v};
     console.log("send msg:", message);
     $.ajax({
@@ -172,12 +173,12 @@ var MainView = React.createClass({
             console.error("error ajax", err.toString());
         }.bind(this)
     });
-    var input = document.getElementById('msg-input');
+    var input = document.getElementById('msg-input-ipad');
     input.value = ""
   },
 
   _onClick: function(e){
-    var input = document.getElementById('msg-input');
+    var input = document.getElementById('msg-input-ipad');
     var text = input.value;
     if (text === "") return;
     this.sendMessage(text);
@@ -194,7 +195,7 @@ var MainView = React.createClass({
   },
 
   toggleEmoji: function(evt){
-      $('#msg-input').emojiPicker('toggle');
+      $('#msg-input-ipad').emojiPicker('toggle');
   },
 
   render: function() {
@@ -210,7 +211,7 @@ var MainView = React.createClass({
           <div className="option col-xs-1 white-background">
             <span id="emoji" onClick={this.toggleEmoji} className="fa fa-smile-o light-grey"></span>
           </div>
-          <textarea id="msg-input" className="input-message col-xs-10" placeholder="Your message" onKeyPress={this._onEnter}></textarea>
+          <textarea id="msg-input-ipad" className="input-message col-xs-10" placeholder="Your message" onKeyPress={this._onEnter}></textarea>
           <div className="option col-xs-1 green-background send-message" onClick={this._onClick}>
             <span className="white light fa fa-paper-plane-o"></span>
           </div>
@@ -220,7 +221,7 @@ var MainView = React.createClass({
 
     return (
       <div style={style} className="text-center">
-        <div className="marvel-device iphone6 silver">
+        <div className="marvel-device ipad silver">
             <div className="top-bar"></div>
             <div className="sleep"></div>
             <div className="volume"></div>
