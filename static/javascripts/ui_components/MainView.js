@@ -53,7 +53,7 @@ var MainView = React.createClass({
       var delay = 10;
       var max = 10;
       console.log("call connect")
-      var ws = new WebSocket('ws://localhost:8090/sub?room_id=1&token=abc&batch=1');
+      var ws = new WebSocket('ws://172.16.9.4:8090/sub?room_id=1&token=abc&batch=1');
       var auth = false;
     //   var _messageRecieve = this._messageRecieve;
       var onMessage = this.onMessage;
@@ -162,7 +162,7 @@ var MainView = React.createClass({
     var j = {user: "test", text: v};
     console.log("send msg:", message);
     $.ajax({
-        url: "http://localhost:7172/1/push/room?rid=1",
+        url: "http://172.16.9.4:7172/1/push/room?rid=1",
         dataType: 'json',
         type: 'POST',
         data: JSON.stringify(message),
